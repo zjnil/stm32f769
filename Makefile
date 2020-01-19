@@ -1,21 +1,19 @@
-url_buildroot = https://buildroot.org/downloads/buildroot-2018.02.tar.gz
-archive_buildroot = buildroot.tar.gz
-dir_download = downloads
+url_buildroot = https://github.com/buildroot/buildroot.git
 dir_configs = configs
 dir_buildroot = buildroot
 dir_publish = /srv/tftp/stm32f769/
 
 bootstrap:
-	mkdir -p $(dir_download)
-	mkdir -p $(dir_buildroot)
-	wget -O $(dir_download)/$(archive_buildroot) $(url_buildroot)
-	tar zxvf $(dir_download)/$(archive_buildroot) -C $(dir_buildroot) --strip-components=1
+	git clone url_buildroot
+	cd $(dir_buildroot) && git checkout e2e57d56787b7a7d24ed3f9a97902d2bbd58c190
+	git apply ../patches/buildroot.revert_remove_binutils_2.28.patch
+	cd ..
 	cp $(dir_configs)/buildroot $(dir_buildroot)/.config
 
 build:
-	make -j10 -C $(dir_buildroot)
-	cp $(dir_buildroot)/output/images/stm32f769-disco.dtb ${dir_publish}/
+	make -j2 -C $(dir_buildroot)
 	cp $(dir_buildroot)/output/images/zImage ${dir_publish}/
+	cp $(dir_buildroot)/output/build/linux-custom/arch/arm/boot/dts/stm32f769-disco.dtb ${dir_publish}/
 
 flash_bootloader:
 	cd $(dir_buildroot)/output/build/host-openocd-0.10.0/tcl && ../../../host/usr/bin/openocd \
@@ -25,4 +23,4 @@ flash_bootloader:
 		-c "reset run" -c shutdown
 
 clean:
-	rm -rf $(dir_buildroot) $(dir_download)
+	rm -rf $(dir_buildroot)
