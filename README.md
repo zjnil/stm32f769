@@ -1,11 +1,12 @@
-####Build Linux for STM32F769I-DISCO using Buildroot
+##### Build Linux for STM32F769I-DISCO using Buildroot
 
 I forked `https://github.com/fdu/STM32F769I-disco_Buildroot`, and used the latest buildroot (`e2e57d56787b7a7d24ed3f9a97902d2bbd58c190` on `master`), latest kernel (5.4), latest u-boot (2020.01), latest busybox (1.31).
 
+![](https://raw.githubusercontent.com/adrianalin/STM32F769I-disco_Buildroot/master/stm32f769i-disco.jpg)
+
 After cloning `git@github.com:adrianalin/STM32F769I-disco_Buildroot.git`, you need to setup a `tftp` server for hosting the image.
 
-<br>
-####`tftp` server setup:
+#### `tftp` server setup:
 - `apt install tftpd-hpa`
 - edit `/etc/default/tftpd-hpa`:
 ```
@@ -21,8 +22,7 @@ $ ls /srv/tftp/stm32f769/
 stm32f769-disco.dtb  zImage
 ```
 
-<br>
-####Build the image
+#### Build the image
 - `make bootstrap`: clones buildroot, and copies buildroot config
 - `make build`: builds the image; copies uboot-spl, uboot, kernel image and dtb to `/srv/tftp/stm32f769/`
 - `make flash_bootloader`, connect your board (ST-LINK micro USB connector) to PC before running this
@@ -53,8 +53,7 @@ Card did not respond to voltage select!
 U-Boot >
 ```
 
-<br>
-####Booting Linux
+#### Booting Linux
 After successfully getting to u-boot console, make sure tftp server is accessible , connect your board to ethernet and run:
 ```
 U-Boot > dhcp
