@@ -94,8 +94,8 @@ index 6f1d0ac8c31c..99f7db12daa5 100644
 +	pinctrl-0 = <&ethernet_rmii>;
 + 	phy-mode = "rmii";
 +
-+ 	rx-fifo-depth = <16384>;
-+	tx-fifo-depth = <16384>;
++ 	rx-fifo-depth = <4096>;
++	tx-fifo-depth = <4096>;
 +};
 +
 +&dma1 {
