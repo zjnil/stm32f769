@@ -10,6 +10,10 @@ bootstrap:
 	cd ..
 	cp $(dir_configs)/buildroot $(dir_buildroot)/.config
 
+linux-rebuild:
+	make -C $(dir_buildroot) linux-rebuild all
+	cp $(dir_buildroot)/output/images/zImage ${dir_publish}/
+
 build:
 	make -C $(dir_buildroot)
 	cp $(dir_buildroot)/output/images/zImage ${dir_publish}/
