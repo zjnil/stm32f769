@@ -7,7 +7,7 @@ index 99515999409b..92969cbe57a2 100644
  			linux,dma-default;
  			no-map;
 -			reg = <0x20020000 0x8000>; /* sram1 */
-+			reg = <0xC0EF0000 0x10F000>; /* 12 bits page alligned */
++			size = <0x10F000>;
  		};
  	};
  
