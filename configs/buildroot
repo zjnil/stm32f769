@@ -160,8 +160,8 @@ BR2_XZCAT="xzcat"
 BR2_LZCAT="lzip -d -c"
 BR2_TAR_OPTIONS=""
 BR2_DEFCONFIG="../configs/buildroot"
-BR2_DL_DIR="$(TOPDIR)/dl"
-BR2_HOST_DIR="$(BASE_DIR)/host"
+BR2_DL_DIR="$(TOPDIR)/../dl_buildroot"
+BR2_HOST_DIR="$(TOPDIR)/../host_buildroot"
 
 #
 # Mirrors and Download locations
