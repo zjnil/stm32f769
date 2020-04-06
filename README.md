@@ -4,6 +4,7 @@ I forked `https://github.com/fdu/STM32F769I-disco_Buildroot`, and used the lates
 
 ![](https://raw.githubusercontent.com/adrianalin/STM32F769I-disco_Buildroot/master/stm32f769i-disco.jpg)
 
+Since this uses `br2-external` option (see buildroot user manual), I recommend cloning this is a new directory, it will create new external dirs for buildroot, dl (used by buildroot), host (used by buildroot).
 After cloning `git@github.com:adrianalin/STM32F769I-disco_Buildroot.git`, you need to setup a `tftp` server for hosting the image.
 
 #### `tftp` server setup:
