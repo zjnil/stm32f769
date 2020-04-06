@@ -1,0 +1,6 @@
+config BR2_PACKAGE_FBMARK_APP
+	bool "fbmark"
+	help
+	  Benchmark for testing fb device.
+
+	  https://github.com/caramelli/fbmark
