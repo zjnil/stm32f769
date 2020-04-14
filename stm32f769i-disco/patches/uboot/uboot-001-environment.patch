@@ -20,10 +20,10 @@ index df907426d2..802675a6d6 100644
  
  	return 0;
 diff --git a/include/configs/stm32f746-disco.h b/include/configs/stm32f746-disco.h
-index 337b99977b..766c45930b 100644
+index 337b99977b..d673b24caa 100644
 --- a/include/configs/stm32f746-disco.h
 +++ b/include/configs/stm32f746-disco.h
-@@ -46,14 +46,17 @@
+@@ -46,14 +46,18 @@
  
  #include <config_distro_bootcmd.h>
  #define CONFIG_EXTRA_ENV_SETTINGS				\
@@ -31,7 +31,7 @@ index 337b99977b..766c45930b 100644
 -			"fdtfile=stm32f746-disco.dtb\0"	\
 -			"fdt_addr_r=0xC0500000\0"		\
 -			"scriptaddr=0xC0008000\0"		\
--			"pxefile_addr_r=0xC0008000\0" \
+ 			"pxefile_addr_r=0xC0008000\0" \
 -			"fdt_high=0xffffffffffffffff\0"		\
 -			"initrd_high=0xffffffffffffffff\0"	\
 -			"ramdisk_addr_r=0xC0600000\0"		\
@@ -39,12 +39,12 @@ index 337b99977b..766c45930b 100644
 +			"serverip=192.168.0.122\0" \
 +			"dtb_file=stm32f769/stm32f769-disco.dtb\0" \
 +			"kernel_file=stm32f769/zImage\0" \
-+			"dtb_addr=0xc0700000\0" \
-+			"kernel_addr=0xc0008000\0" \
-+			"netboot=tftp ${dtb_addr} ${dtb_file} && tftp ${kernel_addr} ${kernel_file} && bootz ${kernel_addr} - ${dtb_addr}\0" \
-+			"spiboot=sf probe && sf read ${dtb_addr} 0 4000 && sf read ${kernel_addr} 10000 200000 && bootz ${kernel_addr} - ${dtb_addr}\0" \
-+			"mmcboot=mmc dev 0 && fatload mmc 0 ${dtb_addr} /${dtb_file} && fatload mmc 0 ${kernel_addr} /${kernel_file} && icache off && bootz ${kernel_addr} - ${dtb_addr}\0" \
-+			"updatespi=sf probe && tftp ${dtb_addr} ${dtb_file} && sf erase 0 10000 && sf write ${dtb_addr} 0 ${filesize} && tftp ${kernel_addr} ${kernel_file} && sf erase 10000 200000 && sf write ${kernel_addr} 10000 ${filesize}\0" \
++			"fdt_addr_r=0xc0700000\0" \
++			"kernel_addr_r=0xc0008000\0" \
++			"netboot=tftp ${fdt_addr_r} ${dtb_file} && tftp ${kernel_addr_r} ${kernel_file} && bootz ${kernel_addr_r} - ${fdt_addr_r}\0" \
++			"spiboot=sf probe && sf read ${fdt_addr_r} 0 4000 && sf read ${kernel_addr_r} 10000 200000 && bootz ${kernel_addr_r} - ${fdt_addr_r}\0" \
++			"mmcboot=mmc dev 0 && fatload mmc 0 ${fdt_addr_r} /${dtb_file} && fatload mmc 0 ${kernel_addr_r} /${kernel_file} && icache off && bootz ${kernel_addr_r} - ${fdt_addr_r}\0" \
++			"updatespi=sf probe && tftp ${fdt_addr_r} ${dtb_file} && sf erase 0 10000 && sf write ${fdt_addr_r} 0 ${filesize} && tftp ${kernel_addr_r} ${kernel_file} && sf erase 10000 200000 && sf write ${kernel_addr_r} 10000 ${filesize}\0" \
 +			"conditionalboot=if test \"${button}\" = \"LOW\"; then run netboot; fi; run mmcboot\0" \
  			BOOTENV
  
