@@ -15,6 +15,14 @@ bootstrap:
 build:
 	make -C $(dir_buildroot)
 
+save_all:
+	make savedefconfig -C $(dir_buildroot)
+	make linux-update-defconfig -C $(dir_buildroot)
+	make busybox-update-config -C $(dir_buildroot)
+	make uclibc-update-config -C $(dir_buildroot)
+	make barebox-update-defconfig -C $(dir_buildroot)
+	make uboot-update-defconfig -C $(dir_buildroot)
+
 flash_bootloader:
 	cd $(dir_output)/build/host-openocd-0.10.0/tcl && ../../../host/usr/bin/openocd \
 		-f board/stm32f7discovery.cfg \
