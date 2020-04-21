@@ -1,6 +1,6 @@
 ##### Build Linux for STM32F769I-DISCO using Buildroot
 
-I forked `https://github.com/fdu/STM32F769I-disco_Buildroot`, and used the latest buildroot (`e2e57d56787b7a7d24ed3f9a97902d2bbd58c190` on `master`), latest kernel (5.4), latest u-boot (2020.01), latest busybox (1.31).
+I forked `https://github.com/fdu/STM32F769I-disco_Buildroot`, and used buildroot 2020.02.1, kernel (5.4), u-boot (2020.01), busybox (1.31).
 
 ![](https://raw.githubusercontent.com/adrianalin/STM32F769I-disco_Buildroot/master/stm32f769i-disco.jpg)
 

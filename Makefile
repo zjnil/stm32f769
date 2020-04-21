@@ -3,14 +3,15 @@ url_buildroot = https://github.com/buildroot/buildroot.git
 dir_external = $(PREFIX)/STM32F769I-disco_Buildroot
 dir_buildroot = $(PREFIX)/buildroot
 dir_output = $(dir_buildroot)/output
-commit_buildroot = e2e57d56787b7a7d24ed3f9a97902d2bbd58c190
+release_tag = 2020.02.1
 
 bootstrap:
 	@echo "Downloading buildroot to $(PREFIX)"
-	cd .. && git clone $(url_buildroot)
-	cd $(dir_buildroot) && git reset --hard $(commit_buildroot)
-	make BR2_EXTERNAL=$(dir_external) menuconfig -C $(dir_buildroot)
-	make custom_stm32f769_defconfig -C $(dir_buildroot)
+	git clone --depth 10 $(url_buildroot) $(dir_buildroot)
+	cd $(dir_buildroot) && git fetch --tags && git reset --hard $(release_tag)
+	make BR2_EXTERNAL=$(dir_external) custom_stm32f769_defconfig -C $(dir_buildroot)
+	#cp local.mk $(dir_buildroot)
+
 
 build:
 	make -C $(dir_buildroot)
