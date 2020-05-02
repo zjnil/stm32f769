@@ -1,2 +1,1 @@
-source "$BR2_EXTERNAL_STM32F769_PATH/package/fbmark/Config.in"
 source "$BR2_EXTERNAL_STM32F769_PATH/package/hello/Config.in"
