@@ -1,9 +1,15 @@
-CC = gcc
+CC=g++
+CFLAGS=-std=c++11
 
 .PHONY: clean
 
-hello: hello.c
-	$(CC) -o '$@' '$<'
+all: hello
+
+hello: main.o capp.o
+	$(CC) $(CFLAGS) -o '$@' main.o capp.o -lSDLmain -lSDL -lasound
+
+%.o: %.cpp
+	$(CC) $(CFLAGS) -c '$<'
 
 clean:
-	rm hello
+	rm *.o hello

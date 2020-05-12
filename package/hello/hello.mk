@@ -5,11 +5,12 @@
 ################################################################################
 
 HELLO_VERSION = 1.0
-HELLO_SITE = /home/adrian/buildroot/STM32F769I-disco_Buildroot/package/hello/src
+HELLO_SITE = ../STM32F769I-disco_Buildroot/package/hello/src
 HELLO_SITE_METHOD = local
+HELLO_DEPENDENCIES = sdl
 
 define HELLO_BUILD_CMDS
-    $(MAKE) CC="$(TARGET_CC)" LD="$(TARGET_LD)" -C $(@D)
+    $(MAKE) $(TARGET_CONFIGURE_OPTS) CC="$(TARGET_CC)" LD="$(TARGET_LD)" -C $(@D)
 endef
 
 define HELLO_INSTALL_TARGET_CMDS
