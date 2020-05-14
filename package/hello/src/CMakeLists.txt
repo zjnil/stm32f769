@@ -1,7 +1,5 @@
 cmake_minimum_required (VERSION 3.17)
-project (hello)
-
-set(CMAKE_CXX_STANDARD 11)
+project (hello C)
 
 find_package(SDL REQUIRED)
 find_package(SDL_ttf REQUIRED)
@@ -9,7 +7,7 @@ find_package(ALSA REQUIRED)
 find_package(Freetype REQUIRED)
 find_package(ZLIB REQUIRED)
 
-file(GLOB SOURCES *.cpp)
+file(GLOB SOURCES *.c)
 
 include_directories(
 	include
