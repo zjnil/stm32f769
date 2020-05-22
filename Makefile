@@ -4,6 +4,7 @@ dir_external = $(PREFIX)/STM32F769I-disco_Buildroot
 dir_buildroot = $(PREFIX)/buildroot
 dir_output = $(dir_buildroot)/output
 release_tag = 2020.02.1
+tftp_dir = /srv/tftp/stm32f769/
 
 bootstrap:
 	@echo "Downloading buildroot to $(PREFIX)"
@@ -12,12 +13,16 @@ bootstrap:
 	make BR2_EXTERNAL=$(dir_external) custom_stm32f769_defconfig -C $(dir_buildroot)
 	#cp local.mk $(dir_buildroot)
 
+linux-rebuild:
+	make linux-rebuild -C $(dir_buildroot)
+	cp $(dir_buildroot)/output/images/zImage $(tftp_dir)
+	cp $(dir_buildroot)/output/build/linux-custom/arch/arm/boot/dts/stm32f769-disco.dtb $(tftp_dir)
 
 build:
 	make -C $(dir_buildroot)
 
 save_all:
-	make savedefconfig -C $(dir_buildroot)
+	make update-defconfig -C $(dir_buildroot)
 	make linux-update-defconfig -C $(dir_buildroot)
 	make busybox-update-config -C $(dir_buildroot)
 	make uclibc-update-config -C $(dir_buildroot)
