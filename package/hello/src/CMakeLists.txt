@@ -7,7 +7,12 @@ find_package(ALSA REQUIRED)
 find_package(Freetype REQUIRED)
 find_package(ZLIB REQUIRED)
 
-file(GLOB SOURCES *.c)
+file(GLOB SOURCES
+    main.c
+    bmp_drawable.c
+    drawable.c
+    text_drawable.c
+    window_drawable.c)
 
 include_directories(
 	include
