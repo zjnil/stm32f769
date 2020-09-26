@@ -16,7 +16,7 @@ bootstrap:
 linux-rebuild:
 	make linux-rebuild -C $(dir_buildroot)
 	cp $(dir_buildroot)/output/images/zImage $(tftp_dir)
-	cp $(dir_buildroot)/output/build/linux-custom/arch/arm/boot/dts/stm32f769-disco.dtb $(tftp_dir)
+	cp $(dir_buildroot)/output/build/linux-5.6.15/arch/arm/boot/dts/stm32f769-disco.dtb $(tftp_dir)
 
 build:
 	make -C $(dir_buildroot)

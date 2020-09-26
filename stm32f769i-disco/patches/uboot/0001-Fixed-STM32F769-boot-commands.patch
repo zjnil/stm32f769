@@ -48,7 +48,7 @@ index 45343d2323..07ef11f63c 100644
 +			"serverip=192.168.0.122\0" \
 +			"dtb_file=stm32f769/stm32f769-disco.dtb\0" \
 +			"kernel_file=stm32f769/zImage\0" \
-+			"fdt_addr_r=0xc0200000\0" \
++			"fdt_addr_r=0xc0300000\0" \
 +			"kernel_addr_r=0xc0000000\0" \
 +			"netboot=tftp ${fdt_addr_r} ${dtb_file} && tftp ${kernel_addr_r} ${kernel_file} && bootz ${kernel_addr_r} - ${fdt_addr_r}\0" \
 +			"spiboot=sf probe && sf read ${fdt_addr_r} 0 4000 && sf read ${kernel_addr_r} 10000 200000 && bootz ${kernel_addr_r} - ${fdt_addr_r}\0" \
